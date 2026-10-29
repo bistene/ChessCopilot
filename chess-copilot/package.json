@@ -1,0 +1,6 @@
+{
+  "name": "chess-copilot", "version": "1.0.0", "private": true, "type": "module",
+  "scripts": {"dev":"vite", "build":"npm run prepare-engine && vite build", "preview":"vite preview", "prepare-engine":"node scripts/prepare-engine.mjs"},
+  "dependencies": {"chess.js":"^1.4.0", "stockfish":"^17.1.0", "vite":"^6.3.0"},
+  "devDependencies": {}
+}
