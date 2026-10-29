@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "installCommand": "cd chess-copilot && npm install",
+  "buildCommand": "cd chess-copilot && npm run build",
+  "outputDirectory": "chess-copilot/dist",
+  "framework": null
+}
