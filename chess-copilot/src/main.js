@@ -40,7 +40,7 @@ function fullReview(){
  const replay=new Chess();const positions=[replay.fen()];
  for(const m of moves){replay.move(m);positions.push(replay.fen())}
  const worker=new Worker('/engine/'+state.engineScript);state.reviewWorker=worker;state.reviewBusy=true;state.fullReview=[];renderReview();
- let index=0,score=null,searching=false,ready=false;
+ let index=0,score=null,searching=false,ready=false,previousScore=0;
  const stop=()=>{worker.terminate();if(state.reviewWorker===worker)state.reviewWorker=null;state.reviewBusy=false;renderReview()};
  worker.onerror=()=>{stop();toast('Falha no motor de revisão')};
  const next=()=>{if(index>=positions.length){stop();toast('Revisão concluída');return}score=null;searching=true;worker.postMessage('position fen '+positions[index]);worker.postMessage('go depth '+Math.min(state.depth,12))};
@@ -54,13 +54,13 @@ function fullReview(){
    searching=false;
    const cp=score??(state.fullReview.at(-1)?.cp??0);
    if(index>0){
-    const previous=index===1?0:state.fullReview.at(-1)?.cp??0;
+    const previous=previousScore;
     const mover=index%2===1?1:-1;
     const loss=Math.max(0,(previous-cp)*mover);
     const label=loss>=250?'❌ Erro grave':loss>=110?'⚠ Erro':loss>=50?'Imprecisão':loss<=15?'✓ Bom lance':'Lance aceitável';
     state.fullReview.push({ply:index,cp,san:moves[index-1].san,label});
    }
-   index++;renderReview();next();
+   previousScore=cp;index++;renderReview();next();
   }
  }};
  worker.postMessage('uci');
