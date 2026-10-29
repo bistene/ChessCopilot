@@ -34,3 +34,14 @@ button:not(.square):focus-visible,.square:focus-visible{outline:3px solid #69e8b
 .variation:first-child{border:1px solid #376950;background:#15352e}
 @media(max-width:900px){main{grid-template-columns:1fr;max-width:760px}}
 @media(max-width:500px){.arrows{inset:2px;width:calc(100% - 4px);height:calc(100% - 4px)}.board-panel,.panel{border-radius:14px}.coach-panel .actions button{flex:1 1 42%}}
+
+.game-setup{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 14px}
+.game-setup label{display:flex;flex-direction:column;gap:6px;color:#b2c5c5;font-size:12px;font-weight:700}
+.game-setup select{padding:10px;background:#10242b;border-color:#355f59}
+.clock-row{display:flex;justify-content:space-between;gap:12px;margin:0 0 12px}
+.clock-row span{font-size:15px;font-weight:800;letter-spacing:.03em;padding:9px 14px;border-radius:10px;background:#0c1922;border:1px solid #365049;color:#dff9ed}
+#review-chart{display:block;width:100%;height:auto;border:1px solid #304c4b;border-radius:12px;background:#0d1b24}
+.review-list{margin-top:12px;max-height:240px;overflow:auto}
+.review-entry{display:flex;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #2c4244;font-size:13px}
+.review-entry strong{color:#7be8b5}
+@media(max-width:500px){.game-setup{grid-template-columns:1fr 1fr}.game-setup label:last-child{grid-column:1/-1}.clock-row span{font-size:12px;padding:8px}}
